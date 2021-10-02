@@ -7,12 +7,14 @@ const AppStack = createStackNavigator();
 
 import Main from '../pages/Main';
 import Create from '../pages/Create';
+import List from '../pages/List';
 
 const Routes = () => (
   <NavigationContainer>
     <AppStack.Navigator screenOptions={{ headerShown: false }}>
       <AppStack.Screen name="Main" component={Main} />
       <AppStack.Screen name="Create" component={Create} />
+      <AppStack.Screen name="List" component={List} />
     </AppStack.Navigator>
   </NavigationContainer>
 );
