@@ -10,6 +10,7 @@ import Create from '../pages/Create';
 import List from '../pages/List';
 import Search from '../pages/Search';
 import Favorite from '../pages/Favorite';
+import View from '../pages/View';
 
 const Routes = () => (
   <NavigationContainer>
@@ -19,6 +20,7 @@ const Routes = () => (
       <AppStack.Screen name="List" component={List} />
       <AppStack.Screen name="Search" component={Search} />
       <AppStack.Screen name="Favorite" component={Favorite} />
+      <AppStack.Screen name="View" component={View} />
     </AppStack.Navigator>
   </NavigationContainer>
 );
