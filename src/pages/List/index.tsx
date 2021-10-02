@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Container,
@@ -8,6 +8,8 @@ import {
   TitlePosts,
   PostsContainer,
 } from './styled';
+
+import api from '../../api';
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
@@ -22,33 +24,18 @@ type PostType = [
 ];
 
 export default function Create() {
-  const post = [
-    {
-      title: 'Um posts qualquer',
-      body: 'Hello World Hello World Hello World',
-      id: 1,
-    },
-    {
-      title: 'Um posts qualquer',
-      body: 'Hello World Hello World Hello World',
-      id: 2,
-    },
-    {
-      title: 'Um posts qualquer',
-      body: 'Hello World Hello World Hello World',
-      id: 3,
-    },
-    {
-      title: 'Um posts qualquer',
-      body: 'Hello World Hello World Hello World',
-      id: 4,
-    },
-    {
-      title: 'Um posts qualquer',
-      body: 'Hello World Hello World Hello World',
-      id: 5,
-    },
-  ];
+  const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    async function getPost() {
+      try {
+        const response = await api.get('posts');
+        setPost(response.data);
+      } catch (e) {}
+    }
+
+    getPost();
+  }, []);
 
   return (
     <>
