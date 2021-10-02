@@ -15,13 +15,13 @@ export default function FieldComponent({ title, body, favorite }: FieldType) {
       <Content>
         <Title>
           {favorite === true ? '(Star)' : <Icon name="star" size={24} />}&nbsp;
-          {title}
+          {title.substr(1, 12)}...
         </Title>
         <View>
           <TextView>Ver mais</TextView>
         </View>
       </Content>
-      <Body>{body.substr(1, 50)}...</Body>
+      <Body>{body.substr(1, 40)}...</Body>
     </Container>
   );
 }
