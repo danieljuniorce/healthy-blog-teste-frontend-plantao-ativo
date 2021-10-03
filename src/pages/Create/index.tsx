@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
+//import { delPost } from '../../store/posts';
+import api from '../../api';
 import {
   Container,
   Title,
@@ -16,8 +20,41 @@ import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import { addPost } from '../../store/posts';
 
 export default function Create() {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+
+  async function createNewPost() {
+    if (title.length === 0 && body.length === 0) {
+      return;
+    }
+
+    try {
+      const { data } = await api.post('posts', { userId: 15, title, body });
+
+      dispatch(
+        addPost({
+          id: data.id + Math.random(),
+          userId: data.userId,
+          title: data.title,
+          body: data.body,
+        }),
+      );
+
+      setBody('');
+      setTitle('');
+      let route: any = 'List';
+      navigation.navigate(route);
+
+      return;
+    } catch (e) {}
+  }
+
   return (
     <>
       <HeaderComponent />
@@ -28,17 +65,27 @@ export default function Create() {
 
         <InputGroup>
           <TitleInput>Título</TitleInput>
-          <Input />
-          <QtdInput>0/32</QtdInput>
+          <Input
+            onChangeText={text => setTitle(text)}
+            value={title}
+            maxLength={32}
+          />
+          <QtdInput>{title.length}/32</QtdInput>
         </InputGroup>
         <InputGroup>
           <TitleInput>Corpo da Postagem</TitleInput>
-          <InputTextArea multiline={true} numberOfLines={4} />
-          <QtdInput>0/255</QtdInput>
+          <InputTextArea
+            multiline={true}
+            numberOfLines={4}
+            onChangeText={text => setBody(text)}
+            value={body}
+            maxLength={255}
+          />
+          <QtdInput>{body.length}/255</QtdInput>
         </InputGroup>
 
         <ButtonView>
-          <Button>
+          <Button onPress={() => createNewPost()}>
             <TextButton>Criar</TextButton>
           </Button>
         </ButtonView>

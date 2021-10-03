@@ -16,13 +16,13 @@ export default function Tabs() {
           <TabText>+</TabText>
           <TabText>Iníco</TabText>
         </TabItem>
-        <TabItem onPress={() => handleNavigation('Create')}>
-          <TabText>+</TabText>
-          <TabText>Criar Postagem</TabText>
-        </TabItem>
         <TabItem onPress={() => handleNavigation('List')}>
           <TabText>+</TabText>
           <TabText>Ver Postagens</TabText>
+        </TabItem>
+        <TabItem onPress={() => handleNavigation('Create')}>
+          <TabText>+</TabText>
+          <TabText>Criar Postagem</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Search')}>
           <TabText>+</TabText>

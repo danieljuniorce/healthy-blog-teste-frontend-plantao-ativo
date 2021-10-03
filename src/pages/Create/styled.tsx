@@ -20,6 +20,11 @@ const InputGroup = styled.View`
 
 const InputTextArea = styled(Input)`
   height: 120px;
+
+  display: flex;
+  text-align-vertical: top;
+
+  background: transparent;
 `;
 
 const TitleInput = styled.Text`

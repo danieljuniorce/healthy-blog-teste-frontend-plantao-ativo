@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../store';
+import api from '../../api';
 import {
   Container,
   Title,
@@ -8,8 +11,6 @@ import {
   TitlePosts,
   PostsContainer,
 } from './styled';
-
-import api from '../../api';
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
@@ -24,17 +25,31 @@ type PostType = [
 ];
 
 export default function Create() {
-  const [post, setPost] = useState([]);
+  const userPosts: any = useSelector((state: RootState) => state.posts);
 
+  const [posts, setPosts]: any = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  loading;
   useEffect(() => {
-    async function getPost() {
+    setPosts(userPosts);
+    async function handleGetPosts() {
+      setLoading(true);
       try {
-        const response = await api.get('posts');
-        setPost(response.data);
-      } catch (e) {}
+        const { data } = await api.get('posts');
+
+        setPosts([...userPosts, ...data]);
+
+        setLoading(false);
+        return;
+      } catch (e) {
+        setLoading(false);
+        return;
+      }
     }
 
-    getPost();
+    handleGetPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -48,7 +63,7 @@ export default function Create() {
         <Posts>
           <TitlePosts>Veja todas as postagens</TitlePosts>
           <PostsContainer
-            data={post}
+            data={posts}
             renderItem={({ item }: any) => (
               <FieldComponent
                 key={item.id}
@@ -64,3 +79,6 @@ export default function Create() {
     </>
   );
 }
+/*
+
+*/
