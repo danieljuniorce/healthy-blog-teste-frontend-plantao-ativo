@@ -16,17 +16,17 @@ export default function Tabs() {
           <TabText>+</TabText>
           <TabText>Iníco</TabText>
         </TabItem>
+        <TabItem onPress={() => handleNavigation('List')}>
+          <TabText>+</TabText>
+          <TabText>Ver Postagens</TabText>
+        </TabItem>
         <TabItem onPress={() => handleNavigation('Create')}>
           <TabText>+</TabText>
           <TabText>Criar Postagem</TabText>
         </TabItem>
-        <TabItem onPress={() => handleNavigation('List')}>
-          <TabText>+</TabText>
-          <TabText>Ver postagens</TabText>
-        </TabItem>
         <TabItem onPress={() => handleNavigation('Search')}>
           <TabText>+</TabText>
-          <TabText>Procurar postagem</TabText>
+          <TabText>Procurar Postagem</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Favorite')}>
           <TabText>+</TabText>

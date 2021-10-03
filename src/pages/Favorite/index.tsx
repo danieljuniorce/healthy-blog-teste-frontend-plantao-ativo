@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '../../store';
 import {
   Container,
   Title,
@@ -14,28 +16,7 @@ import Tabs from '../../components/Tab';
 import FieldComponent from '../../components/Field';
 
 export default function Create() {
-  const favorite = [
-    {
-      id: 1,
-      title: 'Titulo Qualquer',
-      body: 'Corpo do corpo do corpo',
-    },
-    {
-      id: 2,
-      title: 'Titulo Qualquer',
-      body: 'Corpo do corpo do corpo',
-    },
-    {
-      id: 3,
-      title: 'Titulo Qualquer',
-      body: 'Corpo do corpo do corpo',
-    },
-    {
-      id: 4,
-      title: 'Titulo Qualquer',
-      body: 'Corpo do corpo do corpo',
-    },
-  ];
+  const favorites = useSelector((state: RootState) => state.favorites);
 
   return (
     <>
@@ -48,13 +29,13 @@ export default function Create() {
         <Posts>
           <TitlePosts>Veja todas as postagens favoritadas</TitlePosts>
           <PostsContainer
-            data={favorite}
+            data={favorites}
             renderItem={({ item }: any) => (
               <FieldComponent
                 key={item.id}
                 title={item.title}
                 body={item.body}
-                favorite={true}
+                favorite={item.favorite}
               />
             )}
           />

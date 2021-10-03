@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   padding-horizontal: 20px;
 `;
 

@@ -7,7 +7,7 @@ const Inputs = styled.TextInput`
 
   elevation: 1;
 
-  background: #e8e5e5;
+  background: transparent;
   border: 1px solid #1592e6;
 `;
 
