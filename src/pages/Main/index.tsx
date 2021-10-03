@@ -1,29 +1,52 @@
 import React from 'react';
-import { Text } from 'react-native';
 
-import { Container } from './styled';
+import {
+  Container,
+  Title,
+  SubTitleView,
+  SubTitlePrimary,
+  SubInfos,
+  FavoriteTitlePost,
+} from './styled';
 
 import HeaderComponent from '../../components/Header';
 import FieldComponent from '../../components/Field';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
 import Tabs from '../../components/Tab';
 
 export default function Main() {
   return (
-    <Container>
+    <>
       <HeaderComponent />
-      <Button>
-        <Text>Enviar</Text>
-      </Button>
-      <Input />
+      <Container>
+        <Title>Início</Title>
+        <SubTitleView>
+          <SubTitlePrimary>Bem-vindo ao seu Blog</SubTitlePrimary>
+          <SubInfos>seg, 10:10:10</SubInfos>
+        </SubTitleView>
 
-      <FieldComponent
-        title="Olá tudo bem"
-        body="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-        favorite={true}
-      />
+        <FavoriteTitlePost>
+          Ultimas três postagens favoritadas
+        </FavoriteTitlePost>
+
+        <FieldComponent
+          favorite={true}
+          title="Minhas Postagem Favorita"
+          body="sdasd sada sdasd adas dasdsdasdsa sdas a ssada sdasdasdasd"
+        />
+        <FieldComponent
+          favorite={true}
+          title="Minhas Postagem Favorita"
+          body="sdasd sada sdasd adas dasdsdasdsa sdas a ssada sdasdasdasd"
+        />
+
+        <FieldComponent
+          favorite={true}
+          title="Minhas Postagem Favorita"
+          body="sdasd sada sdasd adas dasdsdasdsa sdas a ssada sdasdasdasd"
+        />
+      </Container>
+
       <Tabs />
-    </Container>
+    </>
   );
 }
