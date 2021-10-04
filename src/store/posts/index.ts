@@ -4,34 +4,17 @@ interface AplicationPostState {
   0?: { id: number; title: string; body: string; userId: number };
 }
 
-const INITIAL_STATE: AplicationPostState = [
-  {
-    id: 102,
-    title: 'Um título qualquer',
-    body: 'Uma coisa qualquer',
-    userId: 15,
-  },
-
-  {
-    id: 104,
-    title: 'Um título qualquer',
-    body: 'Uma coisa qualquer',
-    userId: 15,
-  },
-  {
-    id: 105,
-    title: 'Um título qualquer',
-    body: 'Uma coisa qualquer',
-    userId: 15,
-  },
-];
+const INITIAL_STATE: AplicationPostState = [];
 
 export default function reducer(state: any = INITIAL_STATE, _action: any) {
   switch (_action.type) {
     case 'ADD_POST':
-      return [...state, _action.post];
+      let add = [...state, _action.post];
+      return add;
     case 'DEL_POST':
-      return [...state.filter(data => data.id !== _action.id)];
+      let del = [...state.filter(data => data.id !== _action.id)];
+
+      return del;
     default:
       return state;
   }

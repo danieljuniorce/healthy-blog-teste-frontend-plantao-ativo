@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+//import { useSelector } from 'react-redux';
+//import { RootState } from '../../store';
 
 import {
   Container,
@@ -12,7 +12,7 @@ import {
 } from './styled';
 
 import HeaderComponent from '../../components/Header';
-import FieldComponent from '../../components/Field';
+//import FieldComponent from '../../components/Field';
 import Tabs from '../../components/Tab';
 
 interface IFavorite {
@@ -23,7 +23,7 @@ interface IFavorite {
 }
 
 export default function Main() {
-  const favorites = useSelector((state: RootState) => state.favorites);
+  //const favorites = useSelector((state: RootState) => state.favorites);
 
   return (
     <>
@@ -36,6 +36,14 @@ export default function Main() {
         </SubTitleView>
 
         <FavoriteTitlePost>Três postagens para você</FavoriteTitlePost>
+      </Container>
+
+      <Tabs />
+    </>
+  );
+}
+
+/*
         {favorites.map((favorite: IFavorite, index: number) =>
           index <= 2 ? (
             <FieldComponent
@@ -46,9 +54,4 @@ export default function Main() {
             />
           ) : undefined,
         )}
-      </Container>
-
-      <Tabs />
-    </>
-  );
-}
+*/

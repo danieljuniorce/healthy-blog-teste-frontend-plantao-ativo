@@ -1,23 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
-import { RootState } from '../../store';
+//import { RootState } from '../../store';
 import {
   Container,
   Title,
   SubTitle,
   Posts,
   TitlePosts,
-  PostsContainer,
+  //PostsContainer,
 } from './styled';
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
-import FieldComponent from '../../components/Field';
+//import FieldComponent from '../../components/Field';
 
-export default function Create() {
-  const favorites = useSelector((state: RootState) => state.favorites);
-
+export default function Search() {
   return (
     <>
       <HeaderComponent />
@@ -28,6 +26,13 @@ export default function Create() {
 
         <Posts>
           <TitlePosts>Veja todas as postagens favoritadas</TitlePosts>
+        </Posts>
+      </Container>
+      <Tabs />
+    </>
+  );
+}
+/*
           <PostsContainer
             data={favorites}
             renderItem={({ item }: any) => (
@@ -36,12 +41,10 @@ export default function Create() {
                 title={item.title}
                 body={item.body}
                 favorite={item.favorite}
+                id={item.id}
               />
             )}
           />
-        </Posts>
-      </Container>
-      <Tabs />
-    </>
-  );
-}
+
+  const favorites = useSelector((state: RootState) => state.favorites);
+          */

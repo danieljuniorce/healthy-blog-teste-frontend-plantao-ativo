@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import api from '../../api';
 import {
   Container,
   Title,
@@ -16,7 +17,22 @@ import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
 import Field from '../../components/Field';
 
-export default function Create() {
+export default function Search() {
+  const [title, setTitle] = useState('');
+  const [post, setPost]: any = useState({});
+
+  async function handleGetPostTitle() {
+    try {
+      if (post[0] && post[0].title === title) {
+        return;
+      }
+      const response = await api.get(`posts?title=${title}`);
+
+      setPost(response.data);
+      console.log(post);
+    } catch (e) {}
+  }
+
   return (
     <>
       <HeaderComponent />
@@ -26,23 +42,29 @@ export default function Create() {
         <SubTitle>Digite o título da postagem</SubTitle>
 
         <InputGroup>
-          <InputSearch placeholder="Insirar o título da postagem" />
-          <ButtonSearch>
+          <InputSearch
+            placeholder="Insirar o título da postagem"
+            value={title}
+            onChangeText={text => setTitle(text)}
+          />
+          <ButtonSearch onPress={() => handleGetPostTitle()}>
             <TextButtonSearch>&copy;</TextButtonSearch>
           </ButtonSearch>
         </InputGroup>
 
         <ResponseView>
-          <TitleResponse>Resultados encontrados (0)</TitleResponse>
+          <TitleResponse>Resultados encontrados</TitleResponse>
 
-          <Field
-            favorite={true}
-            title="Minhas Postagem Favorita"
-            body="sdasd sada sdasd adas dasdsdasdsa sdas a ssada sdasdasdasd"
-          />
+          {post[0] ? (
+            <Field title={post[0].title} body={post[0].body} item={post[0]} />
+          ) : undefined}
         </ResponseView>
       </Container>
       <Tabs />
     </>
   );
 }
+
+/**
+
+ */

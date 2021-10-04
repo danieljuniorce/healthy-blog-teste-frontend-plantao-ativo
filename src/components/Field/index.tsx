@@ -1,15 +1,30 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 
 import { Container, Content, View, TextView, Title, Body } from './styled';
 
 type FieldType = {
   title: string;
   body: string;
-  favorite: boolean;
+  favorite?: boolean;
+  item?: object;
 };
 
-export default function FieldComponent({ title, body, favorite }: FieldType) {
+export default function FieldComponent({
+  title,
+  body,
+  favorite,
+  item,
+}: FieldType) {
+  const navigation = useNavigation();
+
+  function handlePageView() {
+    let route: any = 'View';
+    navigation.navigate(route, { item, title });
+
+    return;
+  }
+
   return (
     <Container>
       <Content>
@@ -17,7 +32,7 @@ export default function FieldComponent({ title, body, favorite }: FieldType) {
           {favorite === true ? '#' : undefined}&nbsp;
           {title.substr(0, 18)}
         </Title>
-        <View>
+        <View onPress={() => handlePageView()}>
           <TextView>Ver mais</TextView>
         </View>
       </Content>

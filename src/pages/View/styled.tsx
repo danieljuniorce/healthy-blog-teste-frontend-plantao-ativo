@@ -4,6 +4,12 @@ const Container = styled.SafeAreaView`
   padding-horizontal: 20px;
 `;
 
+const BackTouch = styled.TouchableOpacity`
+  margin-bottom: 10px;
+`;
+
+const TitleBackTouch = styled.Text``;
+
 const Title = styled.Text`
   font-size: 28px;
 `;
@@ -67,4 +73,6 @@ export {
   BodyPost,
   DeletePost,
   TextDeletePost,
+  BackTouch,
+  TitleBackTouch,
 };

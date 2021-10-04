@@ -1,28 +1,15 @@
 interface AplicationFavoritesState {
   map: any;
   filter: any;
-  [0]: { id: number; title: string; body: string; favorite: boolean };
+  0?: { id: number };
 }
 
-const INITIAL_STATE: AplicationFavoritesState = [
-  {
-    id: 1,
-    title: 'título qualquer',
-    body: 'cachorrada',
-    favorite: true,
-  },
-  {
-    id: 2,
-    title: 'título qualquer',
-    body: 'cachorrada',
-    favorite: true,
-  },
-];
+const INITIAL_STATE: AplicationFavoritesState = [];
 
 export default function reducer(state: any = INITIAL_STATE, _action: any) {
   switch (_action.type) {
     case 'ADD_FAVORITE':
-      return [...state, _action.favorite];
+      return [...state, { id: _action.favorite }];
     case 'DEL_FAVORITE':
       return [...state.filter(data => data.id !== _action.id)];
     default:
@@ -30,17 +17,10 @@ export default function reducer(state: any = INITIAL_STATE, _action: any) {
   }
 }
 
-interface IAddFavorite {
-  id: number;
-  title: string;
-  body: string;
-  favorite: boolean;
-}
-
-export function addFavorite(favorite: IAddFavorite) {
+export function addFavorite(favorite: number) {
   return { type: 'ADD_FAVORITE', favorite };
 }
 
-export function delPost(id: number) {
+export function delFavorite(id: number) {
   return { type: 'DEL_FAVORITE', id };
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 
 //import { delPost } from '../../store/posts';
 import api from '../../api';
@@ -22,9 +21,8 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { addPost } from '../../store/posts';
 
-export default function Create() {
+export default function Create({ navigation }) {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -48,11 +46,9 @@ export default function Create() {
 
       setBody('');
       setTitle('');
-      let route: any = 'List';
-      navigation.navigate(route);
-
-      return;
     } catch (e) {}
+
+    return navigation.replace('List');
   }
 
   return (

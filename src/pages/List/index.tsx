@@ -24,17 +24,17 @@ type PostType = [
   },
 ];
 
-export default function Create() {
-  const userPosts: any = useSelector((state: RootState) => state.posts);
-
+export default function Search() {
   const [posts, setPosts]: any = useState([]);
   const [loading, setLoading] = useState(false);
 
-  loading;
+  const userPosts: any = useSelector((state: RootState) => state.posts);
+
   useEffect(() => {
     setPosts(userPosts);
     async function handleGetPosts() {
       setLoading(true);
+
       try {
         const { data } = await api.get('posts');
 
@@ -70,6 +70,7 @@ export default function Create() {
                 title={item.title}
                 body={item.body}
                 favorite={false}
+                item={item}
               />
             )}
           />
