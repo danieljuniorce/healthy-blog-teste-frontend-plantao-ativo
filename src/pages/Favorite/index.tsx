@@ -1,7 +1,8 @@
-import React from 'react';
+import React /*, { useEffect, useState }*/ from 'react';
 //import { useSelector } from 'react-redux';
 
 //import { RootState } from '../../store';
+//import api from '../../api';
 import {
   Container,
   Title,
@@ -32,19 +33,3 @@ export default function Search() {
     </>
   );
 }
-/*
-          <PostsContainer
-            data={favorites}
-            renderItem={({ item }: any) => (
-              <FieldComponent
-                key={item.id}
-                title={item.title}
-                body={item.body}
-                favorite={item.favorite}
-                id={item.id}
-              />
-            )}
-          />
-
-  const favorites = useSelector((state: RootState) => state.favorites);
-          */

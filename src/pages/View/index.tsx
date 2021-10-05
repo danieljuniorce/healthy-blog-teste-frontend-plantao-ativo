@@ -25,7 +25,6 @@ import { delPost } from '../../store/posts';
 export default function View({ route, navigation }: any) {
   const dispatch = useDispatch();
   const favorites = useSelector((state: RootState) => state.favorites);
-
   const [post, setPost]: any = useState({});
   const [favorite, setFavorite]: any = useState([]);
 
@@ -36,16 +35,16 @@ export default function View({ route, navigation }: any) {
       setFavorite(favorites.filter(fav => fav.id === route.params.item.id)),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [route.params.id, favorites]);
+  }, [route.params.id]);
 
-  function handleDeletePost() {
+  async function handleDeletePost() {
     dispatch(delPost(post.id));
     setPost({});
-    navigation.replace('List');
+    navigation.replace('Main');
     return;
   }
 
-  function handleFavoritePost() {
+  async function handleFavoritePost() {
     if (favorite[0]) {
       dispatch(delFavorite(post.id));
       setFavorite([]);

@@ -48,7 +48,7 @@ export default function Create({ navigation }) {
       setTitle('');
     } catch (e) {}
 
-    return navigation.replace('List');
+    return navigation.replace('Main');
   }
 
   return (

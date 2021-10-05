@@ -1,6 +1,6 @@
 import React from 'react';
-//import { useSelector } from 'react-redux';
-//import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 import {
   Container,
@@ -9,10 +9,11 @@ import {
   SubTitlePrimary,
   SubInfos,
   FavoriteTitlePost,
+  PostsContainer,
 } from './styled';
 
 import HeaderComponent from '../../components/Header';
-//import FieldComponent from '../../components/Field';
+import FieldComponent from '../../components/Field';
 import Tabs from '../../components/Tab';
 
 interface IFavorite {
@@ -23,7 +24,7 @@ interface IFavorite {
 }
 
 export default function Main() {
-  //const favorites = useSelector((state: RootState) => state.favorites);
+  const posts = useSelector((state: RootState) => state.posts);
 
   return (
     <>
@@ -35,7 +36,20 @@ export default function Main() {
           <SubInfos>seg, 10:10:10</SubInfos>
         </SubTitleView>
 
-        <FavoriteTitlePost>Três postagens para você</FavoriteTitlePost>
+        <FavoriteTitlePost>Minhas postagens</FavoriteTitlePost>
+
+        <PostsContainer
+          data={posts}
+          renderItem={({ item }: any) => (
+            <FieldComponent
+              key={item.id}
+              title={item.title}
+              body={item.body}
+              favorite={item.favorite}
+              item={item}
+            />
+          )}
+        />
       </Container>
 
       <Tabs />
