@@ -6,6 +6,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { addFavorite, delFavorite } from '../../store/favorites';
 import { RootState } from '../../store';
 import { delPost } from '../../store/posts';
+import { IPostsResponse } from '../../interface';
 
 import {
   Container,
@@ -24,13 +25,13 @@ import {
 import { Header, Tabs, Loading } from '../../components';
 import api from '../../api';
 
-export default function View({ route, navigation }: any) {
+export default function View({ route, navigation }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state: RootState) => state.favorites);
-  const [post, setPost]: any = useState({});
-  const [favorite, setFavorite]: any = useState([]);
-  const [loading, setLoading]: any = useState(false);
-  const [netStatus, setNetStatus]: any = useState(false);
+  const [post, setPost] = useState<IPostsResponse | any>({});
+  const [favorite, setFavorite] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [netStatus, setNetStatus] = useState(false);
 
   useEffect(() => {
     NetInfo.addEventListener(state => {

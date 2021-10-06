@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Keyboard } from 'react-native';
 
 import { addPost } from '../../store/posts';
+import { IPostsResponse } from '../../interface';
 import api from '../../api';
 import {
   Container,
@@ -20,10 +21,10 @@ import { Header, Tabs, Inputs, Button, Loading } from '../../components';
 export default function Create({ navigation }) {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [keyboarStatus, setKeyboarStatus] = useState(false);
+  const [title, setTitle] = useState<string>('');
+  const [body, setBody] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [keyboarStatus, setKeyboarStatus] = useState<boolean>(false);
 
   useEffect(() => {
     const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
@@ -47,7 +48,7 @@ export default function Create({ navigation }) {
     }
 
     try {
-      const { data }: any = await api.post('posts', {
+      const { data }: IPostsResponse = await api.post('posts', {
         userId: 15,
         title,
         body,

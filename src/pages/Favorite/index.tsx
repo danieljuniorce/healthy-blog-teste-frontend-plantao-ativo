@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ListRenderItemInfo } from 'react-native';
 
 import { RootState } from '../../store';
-
+import { IPosts } from '../../interface';
 import {
   Container,
   Title,
@@ -31,7 +32,7 @@ export default function Search() {
           ) : (
             <PostsContainer
               data={favorites}
-              renderItem={({ item }: any) => (
+              renderItem={({ item }: ListRenderItemInfo<IPosts>) => (
                 <Field key={item.id} title={item.title} item={item} />
               )}
             />

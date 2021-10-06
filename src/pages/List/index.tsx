@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ListRenderItemInfo } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import LottieFile from 'lottie-react-native';
 
 import api from '../../api';
+import { IPosts, IPostsResponse } from '../../interface';
 import {
   Container,
   Title,
@@ -16,9 +17,9 @@ import { Header, Tabs, Field, Loading } from '../../components';
 import wifi from '../../assets/lottie/wifi.json';
 
 export default function Search() {
-  const [posts, setPosts]: any = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [netStatus, setNetStatus] = useState(false);
+  const [posts, setPosts] = useState<IPostsResponse | any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [netStatus, setNetStatus] = useState<boolean>(false);
 
   useEffect(() => {
     NetInfo.addEventListener(state => {
@@ -29,9 +30,9 @@ export default function Search() {
       setLoading(true);
 
       try {
-        const { data }: any = await api.get('posts');
+        const response: IPostsResponse = await api.get('posts');
 
-        setPosts(data);
+        setPosts(response.data);
         setLoading(false);
         return;
       } catch (e) {
@@ -60,7 +61,7 @@ export default function Search() {
             ) : (
               <PostsContainer
                 data={posts}
-                renderItem={({ item }: any) => (
+                renderItem={({ item }: ListRenderItemInfo<IPosts>) => (
                   <Field key={item.id} title={item.title} item={item} />
                 )}
               />
