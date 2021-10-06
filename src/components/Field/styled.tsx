@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
-const Container = styled.View`
-  height: 80px;
+const Container = styled.SafeAreaView`
+  height: 90px;
   border-radius: 10px;
   margin-vertical: 6px;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
@@ -13,7 +13,7 @@ import {
 } from './styled';
 
 import HeaderComponent from '../../components/Header';
-import FieldComponent from '../../components/Field';
+import Field from '../../components/Field';
 import Tabs from '../../components/Tab';
 
 interface IFavorite {
@@ -26,6 +26,19 @@ interface IFavorite {
 export default function Main() {
   const posts = useSelector((state: RootState) => state.posts);
 
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const date = new Date();
+    setTimeout(() => setTime(date), 1000);
+  });
+
+  const msgDate = `${time.toDateString()}, ${
+    time.getHours() <= 9 ? '0' + time.getHours() : time.getHours()
+  }:${time.getMinutes() <= 9 ? '0' + time.getMinutes() : time.getMinutes()}:${
+    time.getSeconds() <= 9 ? '0' + time.getSeconds() : time.getSeconds()
+  }`;
+
   return (
     <>
       <HeaderComponent />
@@ -33,23 +46,28 @@ export default function Main() {
         <Title>Início</Title>
         <SubTitleView>
           <SubTitlePrimary>Bem-vindo ao seu Blog</SubTitlePrimary>
-          <SubInfos>seg, 10:10:10</SubInfos>
+          <SubInfos>{msgDate}</SubInfos>
         </SubTitleView>
 
         <FavoriteTitlePost>Minhas postagens</FavoriteTitlePost>
-
-        <PostsContainer
-          data={posts}
-          renderItem={({ item }: any) => (
-            <FieldComponent
-              key={item.id}
-              title={item.title}
-              body={item.body}
-              favorite={item.favorite}
-              item={item}
-            />
-          )}
-        />
+        {posts.length === 0 ? (
+          <FavoriteTitlePost>
+            No momento você não criou nenhuma postagem.
+          </FavoriteTitlePost>
+        ) : (
+          <PostsContainer
+            data={posts}
+            renderItem={({ item }: any) => (
+              <Field
+                key={item.id}
+                title={item.title}
+                body={item.body}
+                favorite={item.favorite}
+                item={item}
+              />
+            )}
+          />
+        )}
       </Container>
 
       <Tabs />
@@ -60,7 +78,7 @@ export default function Main() {
 /*
         {favorites.map((favorite: IFavorite, index: number) =>
           index <= 2 ? (
-            <FieldComponent
+            <Field
               favorite={favorite.favorite}
               key={index}
               title={favorite.title}

@@ -14,7 +14,8 @@ import {
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
-//import FieldComponent from '../../components/Field';
+import Loading from '../../components/Loading';
+//import Field from '../../components/Field';
 
 export default function Search() {
   return (
@@ -28,6 +29,8 @@ export default function Search() {
         <Posts>
           <TitlePosts>Veja todas as postagens favoritadas</TitlePosts>
         </Posts>
+
+        <Loading />
       </Container>
       <Tabs />
     </>

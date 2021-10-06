@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Keyboard } from 'react-native';
 
 import api from '../../api';
 import {
@@ -16,12 +17,31 @@ import {
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
 import Field from '../../components/Field';
+import Loading from '../../components/Loading';
 
 export default function Search() {
   const [title, setTitle] = useState('');
   const [post, setPost]: any = useState({});
+  const [loading, setLoading] = useState(false);
+  const [keyboarStatus, setKeyboarStatus] = useState(false);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+      return setKeyboarStatus(true);
+    });
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      return setKeyboarStatus(false);
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
 
   async function handleGetPostTitle() {
+    Keyboard.dismiss();
+    setLoading(true);
     try {
       if (post[0] && post[0].title === title) {
         return;
@@ -29,8 +49,10 @@ export default function Search() {
       const response = await api.get(`posts?title=${title}`);
 
       setPost(response.data);
-      console.log(post);
-    } catch (e) {}
+      return setLoading(false);
+    } catch (e) {
+      return setLoading(false);
+    }
   }
 
   return (
@@ -55,12 +77,15 @@ export default function Search() {
         <ResponseView>
           <TitleResponse>Resultados encontrados</TitleResponse>
 
-          {post[0] ? (
+          {loading === true ? (
+            <Loading />
+          ) : post[0] ? (
             <Field title={post[0].title} body={post[0].body} item={post[0]} />
           ) : undefined}
         </ResponseView>
       </Container>
-      <Tabs />
+
+      <Tabs KeyboardShow={keyboarStatus} />
     </>
   );
 }

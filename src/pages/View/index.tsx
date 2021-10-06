@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { addFavorite, delFavorite } from '../../store/favorites';
 import { RootState } from '../../store';
+import { delPost } from '../../store/posts';
+
 import {
   Container,
   Title,
@@ -20,7 +22,6 @@ import {
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
-import { delPost } from '../../store/posts';
 
 export default function View({ route, navigation }: any) {
   const dispatch = useDispatch();

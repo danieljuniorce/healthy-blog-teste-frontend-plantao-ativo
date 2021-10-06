@@ -14,7 +14,8 @@ import {
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
-import FieldComponent from '../../components/Field';
+import Field from '../../components/Field';
+import Loading from '../../components/Loading';
 
 type PostType = [
   {
@@ -62,18 +63,22 @@ export default function Search() {
 
         <Posts>
           <TitlePosts>Veja todas as postagens</TitlePosts>
-          <PostsContainer
-            data={posts}
-            renderItem={({ item }: any) => (
-              <FieldComponent
-                key={item.id}
-                title={item.title}
-                body={item.body}
-                favorite={false}
-                item={item}
-              />
-            )}
-          />
+          {loading === true ? (
+            <Loading />
+          ) : (
+            <PostsContainer
+              data={posts}
+              renderItem={({ item }: any) => (
+                <Field
+                  key={item.id}
+                  title={item.title}
+                  body={item.body}
+                  favorite={false}
+                  item={item}
+                />
+              )}
+            />
+          )}
         </Posts>
       </Container>
       <Tabs />

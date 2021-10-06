@@ -22,18 +22,30 @@ const PostView = styled.View`
 const InfoView = styled.View`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   margin-bottom: 25px;
 `;
 
 const TitleInfo = styled.Text`
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
+
+  text-transform: capitalize;
+  text-align: justify;
+
+  max-width: 290px;
 `;
 
-const FavoritePost = styled.TouchableOpacity``;
+const FavoritePost = styled.TouchableOpacity`
+  margin-left: 15px;
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  justify-content: center;
+`;
 
 const TextFavoritePost = styled.Text`
   font-size: 35px;
@@ -48,8 +60,7 @@ const BodyPost = styled.Text`
 `;
 
 const DeletePost = styled.TouchableOpacity`
-  margin-top: 200px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 
   width: 100%;
   justify-content: center;

@@ -2,7 +2,11 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Container, TabsContainer, TabItem, TabText } from './styled';
 
-export default function Tabs() {
+interface KeyboardType {
+  KeyboardShow?: boolean;
+}
+
+export default function Tabs({ KeyboardShow }: KeyboardType) {
   const navigation = useNavigation();
 
   function handleNavigation(page: any) {
@@ -10,7 +14,7 @@ export default function Tabs() {
   }
 
   return (
-    <Container>
+    <Container KeyboardShow={KeyboardShow}>
       <TabsContainer>
         <TabItem onPress={() => handleNavigation('Main')}>
           <TabText>+</TabText>

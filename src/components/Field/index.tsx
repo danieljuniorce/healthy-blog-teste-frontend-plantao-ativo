@@ -10,12 +10,7 @@ type FieldType = {
   item?: object;
 };
 
-export default function FieldComponent({
-  title,
-  body,
-  favorite,
-  item,
-}: FieldType) {
+export default function Field({ title, body, favorite, item }: FieldType) {
   const navigation = useNavigation();
 
   function handlePageView() {
