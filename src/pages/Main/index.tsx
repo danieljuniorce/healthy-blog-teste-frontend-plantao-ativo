@@ -14,13 +14,6 @@ import {
 
 import { Header, Field, Tabs } from '../../components';
 
-interface IFavorite {
-  id: number;
-  title: string;
-  body: string;
-  favorite: boolean;
-}
-
 export default function Main() {
   const posts = useSelector((state: RootState) => state.posts);
 
@@ -29,6 +22,7 @@ export default function Main() {
   useEffect(() => {
     const date = new Date();
     setTimeout(() => setTime(date), 1000);
+    return () => {};
   }, [time]);
 
   const msgDate = `${time.toDateString()}, ${

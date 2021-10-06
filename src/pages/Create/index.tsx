@@ -32,6 +32,7 @@ export default function Create({ navigation }) {
     const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
       return setKeyboarStatus(false);
     });
+    console.log('View Create');
 
     return () => {
       showSubscription.remove();

@@ -30,6 +30,8 @@ export default function Search() {
       return setKeyboarStatus(false);
     });
 
+    console.log('View Search');
+
     return () => {
       showSubscription.remove();
       hideSubscription.remove();

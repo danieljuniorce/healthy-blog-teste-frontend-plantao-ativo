@@ -34,8 +34,8 @@ export default function View({ route, navigation }: any) {
 
     setFavorite(favorites.filter(fav => fav.id === route.params.item.id));
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [route.params.id]);
+    console.log('View');
+  }, [favorites, route]);
 
   async function handleDeletePost() {
     if (favorite[0]) {

@@ -38,8 +38,8 @@ export default function Search() {
     }
 
     handleGetPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    console.log('View List');
+  }, [userPosts]);
 
   return (
     <>
