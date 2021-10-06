@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 

@@ -13,13 +13,11 @@ export default function reducer(state: any = INITIAL_STATE, _action: any) {
       return add;
     case 'DEL_POST':
       let del = [...state.filter(data => data.id !== _action.id)];
-
       return del;
     default:
       return state;
   }
 }
-
 interface IAddPost {
   id: number;
   title: string;

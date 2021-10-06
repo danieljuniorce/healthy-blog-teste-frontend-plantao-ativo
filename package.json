@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.2",
     "@react-navigation/stack": "^6.0.9",
@@ -26,6 +27,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {

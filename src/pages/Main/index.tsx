@@ -31,7 +31,7 @@ export default function Main() {
   useEffect(() => {
     const date = new Date();
     setTimeout(() => setTime(date), 1000);
-  });
+  }, [time]);
 
   const msgDate = `${time.toDateString()}, ${
     time.getHours() <= 9 ? '0' + time.getHours() : time.getHours()
@@ -73,16 +73,3 @@ export default function Main() {
     </>
   );
 }
-
-/*
-        {favorites.map((favorite: IFavorite, index: number) =>
-          index <= 2 ? (
-            <Field
-              favorite={favorite.favorite}
-              key={index}
-              title={favorite.title}
-              body={favorite.title}
-            />
-          ) : undefined,
-        )}
-*/
