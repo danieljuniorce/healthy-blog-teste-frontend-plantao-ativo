@@ -6,12 +6,13 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "release": "react-native run-android --variant=release",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "storybook": "start-storybook -p 7007",
-    "build-storybook": "build-storybook"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-native-community/netinfo": "^6.0.2",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.2",
     "@react-navigation/stack": "^6.0.9",
@@ -24,8 +25,10 @@
     "react-native-reanimated": "^2.2.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
+    "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
@@ -35,6 +38,7 @@
     "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.65.0",
+    "@types/react-native-vector-icons": "^6.4.9",
     "@types/react-redux": "^7.1.18",
     "@types/react-test-renderer": "^17.0.1",
     "@types/redux": "^3.6.0",
