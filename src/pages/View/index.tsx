@@ -33,13 +33,16 @@ export default function View({ route, navigation }: any) {
   useEffect(() => {
     const item = route.params.item;
     setPost(item);
-    navigation.addListener('focus', () =>
-      setFavorite(favorites.filter(fav => fav.id === route.params.item.id)),
-    );
+
+    setFavorite(favorites.filter(fav => fav.id === route.params.item.id));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route.params.id]);
 
   async function handleDeletePost() {
+    if (favorite[0]) {
+      dispatch(delFavorite(post.id));
+    }
     dispatch(delPost(post.id));
     setPost({});
     navigation.replace('Main');
@@ -54,8 +57,17 @@ export default function View({ route, navigation }: any) {
       return;
     }
 
-    dispatch(addFavorite(post.id));
-    setFavorite([{ id: post.id }]);
+    dispatch(
+      addFavorite({
+        id: post.id,
+        userId: post.id,
+        title: post.title,
+        body: post.body,
+      }),
+    );
+    setFavorite([
+      { id: post.id, userId: post.id, title: post.title, body: post.body },
+    ]);
     return;
   }
 

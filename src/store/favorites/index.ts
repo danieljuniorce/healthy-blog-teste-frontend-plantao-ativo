@@ -1,7 +1,7 @@
 interface AplicationFavoritesState {
   map: any;
   filter: any;
-  0?: { id: number };
+  0?: { id: number; title: string; body: string; userId: number };
 }
 
 const INITIAL_STATE: AplicationFavoritesState = [];
@@ -9,7 +9,7 @@ const INITIAL_STATE: AplicationFavoritesState = [];
 export default function reducer(state: any = INITIAL_STATE, _action: any) {
   switch (_action.type) {
     case 'ADD_FAVORITE':
-      return [...state, { id: _action.favorite }];
+      return [...state, _action.favorite];
     case 'DEL_FAVORITE':
       return [...state.filter(data => data.id !== _action.id)];
     default:
@@ -17,7 +17,13 @@ export default function reducer(state: any = INITIAL_STATE, _action: any) {
   }
 }
 
-export function addFavorite(favorite: number) {
+interface IAddNewFavorite {
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
+}
+export function addFavorite(favorite: IAddNewFavorite) {
   return { type: 'ADD_FAVORITE', favorite };
 }
 
