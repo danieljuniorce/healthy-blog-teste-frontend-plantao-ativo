@@ -69,7 +69,7 @@ const DeletePost = styled.TouchableOpacity`
 
 const TextDeletePost = styled.Text`
   color: #ca0808;
-
+  text-align: center;
   font-size: 16px;
 `;
 

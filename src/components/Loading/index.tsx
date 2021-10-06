@@ -2,7 +2,7 @@ import React from 'react';
 import Lottie from 'lottie-react-native';
 import { StyleSheet, SafeAreaView } from 'react-native';
 
-import animation from './loading.json';
+import animation from '../../assets/lottie/loading.json';
 
 export default function Loading() {
   return (
