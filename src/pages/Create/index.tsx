@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Keyboard } from 'react-native';
 
-//import { delPost } from '../../store/posts';
+import { addPost } from '../../store/posts';
 import api from '../../api';
 import {
   Container,
@@ -15,13 +15,7 @@ import {
   ButtonView,
   TextButton,
 } from './styled';
-
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import Loading from '../../components/Loading';
-import { addPost } from '../../store/posts';
+import { Header, Tabs, Inputs, Button, Loading } from '../../components';
 
 export default function Create({ navigation }) {
   const dispatch = useDispatch();
@@ -80,7 +74,7 @@ export default function Create({ navigation }) {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <Title>Criar</Title>
@@ -92,7 +86,7 @@ export default function Create({ navigation }) {
           <>
             <InputGroup>
               <TitleInput>Título</TitleInput>
-              <Input
+              <Inputs
                 onChangeText={text => setTitle(text)}
                 value={title}
                 maxLength={32}

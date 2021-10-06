@@ -20,9 +20,7 @@ import {
   BackTouch,
   TitleBackTouch,
 } from './styled';
-
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
+import { Header, Tabs } from '../../components';
 
 export default function View({ route, navigation }: any) {
   const dispatch = useDispatch();
@@ -77,7 +75,7 @@ export default function View({ route, navigation }: any) {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <BackTouch>

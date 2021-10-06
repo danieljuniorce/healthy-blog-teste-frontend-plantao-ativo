@@ -1,30 +1,27 @@
 import styled from 'styled-components/native';
 
-const Container = styled.SafeAreaView`
+const Container = styled.TouchableOpacity`
   height: 90px;
   border-radius: 10px;
   margin-vertical: 6px;
 
-  display: flex;
-
   background: #1592e6;
-`;
-
-const Content = styled.View`
-  margin-horizontal: 10px;
-  margin-vertical: 10px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
+  justify-content: center;
+  flex-direction: column;
 `;
+
+const Content = styled.View``;
 
 const View = styled.TouchableOpacity``;
 
 const TextView = styled.Text`
   color: #fff;
   font-weight: 700;
+
+  font-size: 16px;
 `;
 
 const Title = styled.Text`
@@ -35,7 +32,6 @@ const Title = styled.Text`
 
 const Body = styled.Text`
   color: #fff;
-  margin-horizontal: 10px;
 `;
 
 export { Container, Content, View, TextView, Title, Body };

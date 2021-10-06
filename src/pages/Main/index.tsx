@@ -12,9 +12,7 @@ import {
   PostsContainer,
 } from './styled';
 
-import HeaderComponent from '../../components/Header';
-import Field from '../../components/Field';
-import Tabs from '../../components/Tab';
+import { Header, Field, Tabs } from '../../components';
 
 interface IFavorite {
   id: number;
@@ -41,7 +39,7 @@ export default function Main() {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
       <Container>
         <Title>Início</Title>
         <SubTitleView>
@@ -58,12 +56,7 @@ export default function Main() {
           <PostsContainer
             data={posts}
             renderItem={({ item }: any) => (
-              <Field
-                key={item.id}
-                title={item.title}
-                body={item.body}
-                item={item}
-              />
+              <Field key={item.id} title={item.title} item={item} />
             )}
           />
         )}

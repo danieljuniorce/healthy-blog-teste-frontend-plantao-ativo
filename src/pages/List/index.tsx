@@ -11,19 +11,7 @@ import {
   TitlePosts,
   PostsContainer,
 } from './styled';
-
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
-import Field from '../../components/Field';
-import Loading from '../../components/Loading';
-
-type PostType = [
-  {
-    title: string;
-    body: string;
-    id: number;
-  },
-];
+import { Header, Tabs, Field, Loading } from '../../components';
 
 export default function Search() {
   const [posts, setPosts]: any = useState([]);
@@ -55,7 +43,7 @@ export default function Search() {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <Title>Postagens</Title>
@@ -69,12 +57,7 @@ export default function Search() {
             <PostsContainer
               data={posts}
               renderItem={({ item }: any) => (
-                <Field
-                  key={item.id}
-                  title={item.title}
-                  body={item.body}
-                  item={item}
-                />
+                <Field key={item.id} title={item.title} item={item} />
               )}
             />
           )}

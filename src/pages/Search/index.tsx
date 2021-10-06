@@ -14,10 +14,7 @@ import {
   InputSearch,
 } from './styled';
 
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
-import Field from '../../components/Field';
-import Loading from '../../components/Loading';
+import { Header, Field, Tabs, Loading } from '../../components';
 
 export default function Search() {
   const [title, setTitle] = useState('');
@@ -57,7 +54,7 @@ export default function Search() {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <Title>Procurar</Title>
@@ -80,7 +77,7 @@ export default function Search() {
           {loading === true ? (
             <Loading />
           ) : post[0] ? (
-            <Field title={post[0].title} body={post[0].body} item={post[0]} />
+            <Field title={post[0].title} item={post[0]} />
           ) : undefined}
         </ResponseView>
       </Container>
@@ -89,7 +86,3 @@ export default function Search() {
     </>
   );
 }
-
-/**
-
- */

@@ -1,33 +1,26 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import { Container, Content, View, TextView, Title, Body } from './styled';
+import { Container, Title, Body } from './styled';
 
 type FieldType = {
   title: string;
-  body: string;
-  item?: object;
+  item?: { id: number; userId: number; title: string; body: string };
 };
 
-export default function Field({ title, body, item }: FieldType) {
-  const navigation = useNavigation();
+export default function Field({ title, item }: FieldType) {
+  const navigation: any = useNavigation();
 
   function handlePageView() {
-    let route: any = 'View';
-    navigation.navigate(route, { item, title });
-
+    navigation.navigate('View', { item, title });
     return;
   }
 
   return (
-    <Container>
-      <Content>
-        <Title>{title.substr(0, 18)}</Title>
-        <View onPress={() => handlePageView()}>
-          <TextView>Ver mais</TextView>
-        </View>
-      </Content>
-      <Body>{body.substr(0, 40)}...</Body>
+    <Container onPress={() => handlePageView()}>
+      <Title>{title.substr(0, 32)}</Title>
+
+      <Body>Veja mais, apertando na Postagem </Body>
     </Container>
   );
 }
