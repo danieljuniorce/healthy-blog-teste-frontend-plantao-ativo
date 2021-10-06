@@ -3,9 +3,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:drawable="@color/primary" />
   <item
-    android:width="120dp"
-    android:height="120dp"
-    android:drawable="@drawable/icon"
+    android:drawable="@drawable/screen"
     android:gravity="center"
   />
 </layer-list>
