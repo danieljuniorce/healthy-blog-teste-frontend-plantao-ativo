@@ -62,7 +62,6 @@ export default function Main() {
                 key={item.id}
                 title={item.title}
                 body={item.body}
-                favorite={item.favorite}
                 item={item}
               />
             )}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import { Container, TabsContainer, TabItem, TabText } from './styled';
 
 interface KeyboardType {
@@ -17,23 +19,33 @@ export default function Tabs({ KeyboardShow }: KeyboardType) {
     <Container KeyboardShow={KeyboardShow}>
       <TabsContainer>
         <TabItem onPress={() => handleNavigation('Main')}>
-          <TabText>+</TabText>
+          <TabText>
+            <Icon name="home" />
+          </TabText>
           <TabText>Iníco</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('List')}>
-          <TabText>+</TabText>
+          <TabText>
+            <Icon name="list" />
+          </TabText>
           <TabText>Ver Postagens</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Create')}>
-          <TabText>+</TabText>
+          <TabText>
+            <Icon name="plus" />
+          </TabText>
           <TabText>Criar Postagem</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Search')}>
-          <TabText>+</TabText>
+          <TabText>
+            <Icon name="search" />
+          </TabText>
           <TabText>Procurar Postagem</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Favorite')}>
-          <TabText>+</TabText>
+          <TabText>
+            <Icon name="star" />
+          </TabText>
           <TabText>Postagens Favoritas</TabText>
         </TabItem>
       </TabsContainer>

@@ -73,7 +73,6 @@ export default function Search() {
                   key={item.id}
                   title={item.title}
                   body={item.body}
-                  favorite={false}
                   item={item}
                 />
               )}

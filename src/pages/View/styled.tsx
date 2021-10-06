@@ -6,6 +6,9 @@ const Container = styled.SafeAreaView`
 
 const BackTouch = styled.TouchableOpacity`
   margin-bottom: 10px;
+
+  height: 30px;
+  width: 60px;
 `;
 
 const TitleBackTouch = styled.Text``;
@@ -47,10 +50,7 @@ const FavoritePost = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-const TextFavoritePost = styled.Text`
-  font-size: 35px;
-  color: #e09a02;
-`;
+const TextFavoritePost = styled.Text``;
 
 const BodyPost = styled.Text`
   width: 100%;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { addFavorite, delFavorite } from '../../store/favorites';
 import { RootState } from '../../store';
@@ -69,7 +70,7 @@ export default function View({ route, navigation }: any) {
       <Container>
         <BackTouch>
           <TitleBackTouch onPress={() => handleBackToList()}>
-            Voltar
+            <Icon name="arrow-left" color="#333" /> &nbsp;Voltar
           </TitleBackTouch>
         </BackTouch>
         <Title>Visualizar</Title>
@@ -79,7 +80,11 @@ export default function View({ route, navigation }: any) {
             <TitleInfo>{post.title}</TitleInfo>
             <FavoritePost onPress={() => handleFavoritePost()}>
               <TextFavoritePost>
-                {favorite.length === 0 ? 'F' : 'V'}
+                {favorite.length === 0 ? (
+                  <Icon name="star" size={30} color="#333" />
+                ) : (
+                  <Icon name="star" size={30} color="#e29d09" solid />
+                )}
               </TextFavoritePost>
             </FavoritePost>
           </InfoView>

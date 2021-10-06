@@ -6,11 +6,10 @@ import { Container, Content, View, TextView, Title, Body } from './styled';
 type FieldType = {
   title: string;
   body: string;
-  favorite?: boolean;
   item?: object;
 };
 
-export default function Field({ title, body, favorite, item }: FieldType) {
+export default function Field({ title, body, item }: FieldType) {
   const navigation = useNavigation();
 
   function handlePageView() {
@@ -23,10 +22,7 @@ export default function Field({ title, body, favorite, item }: FieldType) {
   return (
     <Container>
       <Content>
-        <Title>
-          {favorite === true ? '#' : undefined}&nbsp;
-          {title.substr(0, 18)}
-        </Title>
+        <Title>{title.substr(0, 18)}</Title>
         <View onPress={() => handlePageView()}>
           <TextView>Ver mais</TextView>
         </View>
