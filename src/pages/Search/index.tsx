@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Keyboard } from 'react-native';
 
 import api from '../../api';
+import { IPostsResponse } from '../../interface';
 import {
   Container,
   Title,
@@ -14,16 +15,13 @@ import {
   InputSearch,
 } from './styled';
 
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
-import Field from '../../components/Field';
-import Loading from '../../components/Loading';
+import { Header, Field, Tabs, Loading } from '../../components';
 
 export default function Search() {
-  const [title, setTitle] = useState('');
-  const [post, setPost]: any = useState({});
-  const [loading, setLoading] = useState(false);
-  const [keyboarStatus, setKeyboarStatus] = useState(false);
+  const [title, setTitle] = useState<string>('');
+  const [post, setPost] = useState<IPostsResponse | any>({});
+  const [loading, setLoading] = useState<boolean>(false);
+  const [keyboarStatus, setKeyboarStatus] = useState<boolean>(false);
 
   useEffect(() => {
     const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
@@ -46,7 +44,7 @@ export default function Search() {
       if (post[0] && post[0].title === title) {
         return;
       }
-      const response = await api.get(`posts?title=${title}`);
+      const response = await api.get(`posts?title=${title.toLowerCase()}`);
 
       setPost(response.data);
       return setLoading(false);
@@ -57,7 +55,7 @@ export default function Search() {
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <Title>Procurar</Title>
@@ -80,7 +78,7 @@ export default function Search() {
           {loading === true ? (
             <Loading />
           ) : post[0] ? (
-            <Field title={post[0].title} body={post[0].body} item={post[0]} />
+            <Field title={post[0].title} item={post[0]} />
           ) : undefined}
         </ResponseView>
       </Container>
@@ -89,7 +87,3 @@ export default function Search() {
     </>
   );
 }
-
-/**
-
- */

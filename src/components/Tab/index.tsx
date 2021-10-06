@@ -28,25 +28,25 @@ export default function Tabs({ KeyboardShow }: KeyboardType) {
           <TabText>
             <Icon name="list" />
           </TabText>
-          <TabText>Ver Postagens</TabText>
+          <TabText>Lista</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Create')}>
           <TabText>
             <Icon name="plus" />
           </TabText>
-          <TabText>Criar Postagem</TabText>
+          <TabText>Criar</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Search')}>
           <TabText>
             <Icon name="search" />
           </TabText>
-          <TabText>Procurar Postagem</TabText>
+          <TabText>Procurar</TabText>
         </TabItem>
         <TabItem onPress={() => handleNavigation('Favorite')}>
           <TabText>
             <Icon name="star" />
           </TabText>
-          <TabText>Postagens Favoritas</TabText>
+          <TabText>Favoritos</TabText>
         </TabItem>
       </TabsContainer>
     </Container>

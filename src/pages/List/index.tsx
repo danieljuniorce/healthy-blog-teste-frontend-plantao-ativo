@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { StyleSheet, View, Text, ListRenderItemInfo } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import LottieFile from 'lottie-react-native';
 
-import { RootState } from '../../store';
 import api from '../../api';
+import { IPosts, IPostsResponse } from '../../interface';
 import {
   Container,
   Title,
@@ -11,36 +13,26 @@ import {
   TitlePosts,
   PostsContainer,
 } from './styled';
-
-import HeaderComponent from '../../components/Header';
-import Tabs from '../../components/Tab';
-import Field from '../../components/Field';
-import Loading from '../../components/Loading';
-
-type PostType = [
-  {
-    title: string;
-    body: string;
-    id: number;
-  },
-];
+import { Header, Tabs, Field, Loading } from '../../components';
+import wifi from '../../assets/lottie/wifi.json';
 
 export default function Search() {
-  const [posts, setPosts]: any = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const userPosts: any = useSelector((state: RootState) => state.posts);
+  const [posts, setPosts] = useState<IPostsResponse | any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [netStatus, setNetStatus] = useState<boolean>(false);
 
   useEffect(() => {
-    setPosts(userPosts);
+    NetInfo.addEventListener(state => {
+      setNetStatus(state.isConnected);
+    });
+
     async function handleGetPosts() {
       setLoading(true);
 
       try {
-        const { data } = await api.get('posts');
+        const response: IPostsResponse = await api.get('posts');
 
-        setPosts([...userPosts, ...data]);
-
+        setPosts(response.data);
         setLoading(false);
         return;
       } catch (e) {
@@ -50,12 +42,12 @@ export default function Search() {
     }
 
     handleGetPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {};
+  }, [netStatus]);
 
   return (
     <>
-      <HeaderComponent />
+      <Header />
 
       <Container>
         <Title>Postagens</Title>
@@ -63,20 +55,27 @@ export default function Search() {
 
         <Posts>
           <TitlePosts>Veja todas as postagens</TitlePosts>
-          {loading === true ? (
-            <Loading />
+          {netStatus === true ? (
+            loading === true ? (
+              <Loading />
+            ) : (
+              <PostsContainer
+                data={posts}
+                renderItem={({ item }: ListRenderItemInfo<IPosts>) => (
+                  <Field key={item.id} title={item.title} item={item} />
+                )}
+              />
+            )
           ) : (
-            <PostsContainer
-              data={posts}
-              renderItem={({ item }: any) => (
-                <Field
-                  key={item.id}
-                  title={item.title}
-                  body={item.body}
-                  item={item}
-                />
-              )}
-            />
+            <View style={styles.viewAnimation}>
+              <LottieFile
+                source={wifi}
+                loop
+                autoPlay
+                style={styles.animationFile}
+              />
+              <Text style={styles.textAnimation}>Verifique sua Conexão</Text>
+            </View>
           )}
         </Posts>
       </Container>
@@ -84,6 +83,19 @@ export default function Search() {
     </>
   );
 }
-/*
 
-*/
+const styles = StyleSheet.create({
+  viewAnimation: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  animationFile: {
+    width: 200,
+  },
+  textAnimation: {
+    fontSize: 19,
+    fontWeight: '700',
+  },
+});
