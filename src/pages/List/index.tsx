@@ -14,7 +14,8 @@ import {
 
 import HeaderComponent from '../../components/Header';
 import Tabs from '../../components/Tab';
-import FieldComponent from '../../components/Field';
+import Field from '../../components/Field';
+import Loading from '../../components/Loading';
 
 type PostType = [
   {
@@ -24,17 +25,17 @@ type PostType = [
   },
 ];
 
-export default function Create() {
-  const userPosts: any = useSelector((state: RootState) => state.posts);
-
+export default function Search() {
   const [posts, setPosts]: any = useState([]);
   const [loading, setLoading] = useState(false);
 
-  loading;
+  const userPosts: any = useSelector((state: RootState) => state.posts);
+
   useEffect(() => {
     setPosts(userPosts);
     async function handleGetPosts() {
       setLoading(true);
+
       try {
         const { data } = await api.get('posts');
 
@@ -62,17 +63,21 @@ export default function Create() {
 
         <Posts>
           <TitlePosts>Veja todas as postagens</TitlePosts>
-          <PostsContainer
-            data={posts}
-            renderItem={({ item }: any) => (
-              <FieldComponent
-                key={item.id}
-                title={item.title}
-                body={item.body}
-                favorite={false}
-              />
-            )}
-          />
+          {loading === true ? (
+            <Loading />
+          ) : (
+            <PostsContainer
+              data={posts}
+              renderItem={({ item }: any) => (
+                <Field
+                  key={item.id}
+                  title={item.title}
+                  body={item.body}
+                  item={item}
+                />
+              )}
+            />
+          )}
         </Posts>
       </Container>
       <Tabs />

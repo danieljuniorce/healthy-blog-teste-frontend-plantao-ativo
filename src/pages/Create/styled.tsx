@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import Input from '../../components/Input';
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   padding-horizontal: 20px;
 `;
 

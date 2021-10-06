@@ -1,10 +1,19 @@
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
 
-export const Container = styled(Animated.View)`
+interface KeyboardType {
+  KeyboardShow: boolean;
+}
+
+export const Container = styled(Animated.View)<KeyboardType>`
+  display: ${props => (props.KeyboardShow ? 'none' : 'flex')};
+
   height: 100px;
   margin-top: 12px;
   margin-bottom: 30px;
+
+  position: absolute;
+  bottom: -15px;
 `;
 
 export const TabsContainer = styled.ScrollView.attrs({

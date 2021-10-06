@@ -19,7 +19,12 @@ const SubInfos = styled.Text`
 `;
 
 const FavoriteTitlePost = styled.Text`
-  margin-top: 45px;
+  margin-top: 35px;
+`;
+
+const PostsContainer = styled.FlatList`
+  height: 300px;
+  margin-top: 10px;
 `;
 
 export {
@@ -29,4 +34,5 @@ export {
   SubTitlePrimary,
   SubInfos,
   FavoriteTitlePost,
+  PostsContainer,
 };
